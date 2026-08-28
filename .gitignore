@@ -1,0 +1,6 @@
+/.vscode
+/cr.duckdb
+/cr_database.duckdb
+/cr_database.duckdb.wal
+/exports
+/online_shoppers_intention.csv
