@@ -3,6 +3,7 @@ SELECT * FROM read_csv_auto('online_shoppers_intention.csv');
 
 SELECT * FROM shoppers;
 
+                -- Overall Conversion Rate --
 CREATE VIEW cr_overall AS
 SELECT
     COUNT(*) AS total_sessions,
@@ -10,6 +11,7 @@ SELECT
     ROUND(100.0 * converted_sessions / total_sessions, 2) AS conversion_rate_pct
 FROM shoppers;
 
+                -- Conversion Rate by Visitor Type --
 CREATE VIEW cr_by_visitor_type AS
 SELECT
     VisitorType,
@@ -20,6 +22,7 @@ FROM shoppers
 GROUP BY VisitorType
 ORDER BY conversion_rate_pct;
 
+                -- Conversion Rate by Month --
 CREATE VIEW cr_by_month AS
 SELECT
     Month,
@@ -44,6 +47,7 @@ FROM shoppers
 GROUP BY Month
 ORDER BY conversion_rate_pct;
 
+                -- Conversion Rate by Weekend --
 CREATE VIEW cr_by_weekend AS
 SELECT
     Weekend,
@@ -54,6 +58,7 @@ FROM shoppers
 GROUP BY Weekend
 ORDER BY conversion_rate_pct;
 
+                -- Conversion Rate by Traffic Type --
 CREATE VIEW cr_by_traffic_type AS
 SELECT
     TrafficType,
@@ -64,6 +69,7 @@ FROM shoppers
 GROUP BY TrafficType
 ORDER BY conversion_rate_pct;
 
+                -- Conversion Rate by Region --
 CREATE VIEW cr_by_region AS
 SELECT
     Region,
@@ -74,6 +80,7 @@ FROM shoppers
 GROUP BY Region
 ORDER BY conversion_rate_pct;
 
+                -- Behavior by Revenue --
 CREATE VIEW behavior_by_revenue AS
 SELECT
     Revenue,
@@ -84,6 +91,7 @@ SELECT
 FROM shoppers
 GROUP BY Revenue;
 
+                -- Behavior by Visitor Type --
 CREATE VIEW behavior_by_visitor_type AS
 SELECT
     VisitorType,
@@ -95,11 +103,11 @@ FROM shoppers
 GROUP BY VisitorType
 ORDER BY avg_page_values;
 
-COPY cr_overall TO 'exports/cr_overall.csv' (HEADER, DELIMITER ',');
-COPY cr_by_visitor_type TO 'exports/cr_by_visitor_type.csv' (HEADER, DELIMITER ',');
-COPY cr_by_month TO 'exports/cr_by_month.csv' (HEADER, DELIMITER ',');
-COPY cr_by_weekend TO 'exports/cr_by_weekend.csv' (HEADER, DELIMITER ',');
-COPY cr_by_traffic_type TO 'exports/cr_by_traffic_type.csv' (HEADER, DELIMITER ',');
-COPY cr_by_region TO 'exports/cr_by_region.csv' (HEADER, DELIMITER ',');
-COPY behavior_by_revenue TO 'exports/behavior_by_revenue.csv' (HEADER, DELIMITER ',');
-COPY behavior_by_visitor_type TO 'exports/behavior_by_visitor_type.csv' (HEADER, DELIMITER ',');
+SELECT * FROM cr_overall;
+SELECT * FROM cr_by_visitor_type;
+SELECT * FROM cr_by_month;
+SELECT * FROM cr_by_weekend;
+SELECT * FROM cr_by_traffic_type;
+SELECT * FROM cr_by_region;
+SELECT * FROM behavior_by_revenue;
+SELECT * FROM behavior_by_visitor_type;
